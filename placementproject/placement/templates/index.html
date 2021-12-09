@@ -1,0 +1,203 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <title>Placement Form</title>
+    <link rel="stylesheet" type="text/css" href="{%static 'css/ckeditor.css'%}">
+    <!-- <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script> -->
+    <style>
+        body {
+            color: #000;
+            overflow-x: hidden;
+            height: 100%;
+            background-image: url("https://i.imgur.com/GMmCQHC.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            font-size: 16px;
+
+        }
+
+        .card {
+            width: fit-content;
+            padding: 5%;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            border: none !important;
+            box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .blue-text {
+            color: #00BCD4
+        }
+
+        .form-control-label {
+            margin-bottom: 0
+        }
+
+        input,
+        textarea,
+        button {
+            padding: 8px 15px;
+            border-radius: 5px !important;
+            margin: 5px 0px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            font-size: 18px !important;
+            font-weight: 300
+        }
+
+        input:focus,
+        textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #00BCD4;
+            outline-width: 0;
+            font-weight: 400
+        }
+
+        .btn-block {
+            text-transform: uppercase;
+            font-size: 15px !important;
+            font-weight: 400;
+            height: 43px;
+            cursor: pointer
+        }
+
+        .btn-block:hover {
+            color: #fff !important
+        }
+
+        button:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            outline-width: 0
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid px-1 py-5 mx-auto">
+      
+        <div class="row d-flex justify-content-center">
+            <div class="offset-lg-2 col-lg-6 col-md-12 col-sm-12 text-center" style="width: max-content; ">
+                <h3 >Jobaaj, Get The Job Done</h3>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 text-center" style="float: right;">
+                {% if user.is_authenticated %}
+                <a class="btn btn-success">Hello {{user.first_name}}</a>
+                <a href="/logout" class="btn btn-primary">Logout</a>
+                {% else %}
+                <a href="/register" class="btn btn-primary">Register</a>
+                <a href="/login" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 text-center">
+                <div class="card">
+                    <!-- <h5 class="text-center mb-4"><u> Fill The Form Below</u></h5> -->
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li {% if message.tags %} class=" {{ message.tags }} " {% endif %} style="color:red;"> {{message}} </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <h5 class="text-center mb-4">PDF Content</h5>
+
+                    <form class="form-card" action="" method="POST">
+                        {% csrf_token%}
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label
+                                    class="form-control-label px-3">Company Name<span class="text-danger">
+                                        *</span></label> <input type="text" id="fname" name="Company_Name"
+                                    placeholder="Enter your first name">
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label
+                                class="form-control-label px-3">Email/Link<span class="text-danger">
+                                    *</span></label>
+                            <input type="text" id="email" name="Email_link" placeholder="xyz@gmsil.com">
+                            </div>
+                     
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label
+                                    class="form-control-label px-3">Role<span class="text-danger"> *</span></label>
+                                <input type="text" id="rol" name="Role" placeholder="">
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label
+                                class="form-control-label px-3">Location<span class="text-danger"> *</span></label>
+                            <input type="text" id="job" name="Location" placeholder="">
+                        </div>
+
+                        </div>
+                         
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-12 flex-column d-flex"> <label
+                                class="form-control-label px-3">Experience<span class="text-danger"> *</span></label>
+                            <input type="text" id="exp" name="exp" placeholder="">
+                            </div>
+                                {{form.media}}
+
+                                <span style="font-size: 18px;">{{form.job_Description}}</span>
+
+                        </div>
+                       
+                        <br>
+                        <div class="row justify-content-center">
+                            <div class="form-group col-sm-6 text-center"> <button type="submit"
+                                    class="btn-block btn-primary" id="link-with-redirect">submit</button> </div>
+                        </div>
+
+                    </form>
+                    <form action="pdf/" method="post" enctype="multipart/form-data" style="margin-top: 20px;">
+                        {%csrf_token%}
+                        <h5 class="text-center mb-4">Mail Content</h5>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-12 flex-column d-flex"> <label
+                                    class="form-control-label px-3">Mail To<span class="text-danger"> *</span></label>
+                                <input type="text" id="job" name="mailto" placeholder="">
+                            </div>
+                            <div class="form-group col-12 flex-column d-flex"> <label
+                                    class="form-control-label px-3">Subject<span class="text-danger"> *</span></label>
+                                <input type="text" id="job" name="subject" placeholder="">
+                            </div>
+
+                            <div class="form-group col-12 flex-column d-flex"> <label class="form-control-label">Mail
+                                    Body Content<span class="text-danger">
+                                        <textarea name="mail_body" id="editor" cols="30" rows="10"
+                                            style="width: 100%; height: 5rem;"></textarea>
+                            </div>
+                            <p>
+                                <li style="color: red; margin-bottom: 10px;">when the pdf file is downloaded click the
+                                    below button to send mail</li>
+                            </p>
+                            <div class="form-group col-12 flex-column d-flex"> <label
+                                    class="form-control-label px-3">Add PDF file here<span class="text-danger">
+                                        *</span></label>
+                                <input type="file" id="job" name="attach" placeholder="" multiple>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="form-group col-sm-6 text-center"> <button type="submit"
+                                    class="btn-block btn-primary" id="link-with-redirect">Send Mail</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+
+</head>
+
+<body>
+    <style>
+        .card{
+            display: grid;
+            place-items: center;
+
+        }
+        .card-body{
+            font-family: Times New Roman, Times, Georgia, serif;
+            width: 800px;
+            /*border: 1px solid black;*/
+        }
+        .card-text{
+            padding: 5px;
+            margin: 0;
+            margin-left: 10px;
+            font-size: 18px;
+            font-family: Times New Roman, Times, Georgia, serif;
+            inline-size: min-content;
+        }
+        
+        @page {
+        size: letter portrait;
+        background: url("https://nishtyainfotech.com/jobaaj-logo-2.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        @frame content_frame {
+            left: 50pt;
+            width: 512pt;
+            top: 20pt;
+            height: 692pt;
+            /*-pdf-frame-border: 1;  */
+              /* for debugging the layout */
+            }
+        }
+    </style>
+
+    <div class="row p-5">
+        <div class="offset-lg-2 col-lg-8">
+            <div class="card">
+                <div class="card-header" style="margin-left: 25rem;">
+                   <!--  <h1 align="center">Jobaaj.com</h1> -->
+                    <!-- <img src="https://www.jobaaj.com/wp-content/uploads/2021/05/jobaaj1-1.png" style="width:200px;"> -->
+                </div>
+
+                <div class="card-body">
+                    <p class="card-text" style="padding: 0!important"><u>Date: {{lead.CDate}}</u></p>
+                    <h2 class="card-title" style="font-size: 28px; text-align: center;"><u>Job Lead</u></h2>
+                    <p class="card-text" ><b>Company Name:  </b><span>{{lead.CName}}</span></p>
+                    <p class="card-text" ><b>Location:  </b><span>{{lead.Location}}</span></p>
+                    <p class="card-text" ><b>Role:  </b><span>{{lead.Role}}</span></p>
+                    <p class="card-text" ><b>Experience:  </b><span>{{lead.Experience}}</span></p>
+                        <p class="card-text" ><b>Job Description:  </b></p>
+                    <div class="jd" style="margin-left: 20px;font-size: 18px;" >
+                        <p>{{lead.jobDescription|safe}}</p>
+                    </div>
+                    <p class="card-text"><b >If Interested, Kindly apply at:  </b>
+                        <u style="color: blue;">{{lead.Emaillink}}</u></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Placement Form</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+
+    <style>
+        body {
+            color: #000;
+            overflow-x: hidden;
+            height: 100%;
+            background-image: url("https://i.imgur.com/GMmCQHC.png");
+            background-repeat: no-repeat;
+            background-size: 100% 100%
+        }
+
+
+        .card {
+            padding: 30px 40px;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            border: none !important;
+            box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+            width: auto;
+            /* align-items: center; */
+
+        }
+
+        .blue-text {
+            color: #00BCD4
+        }
+
+        .form-control-label {
+            margin-bottom: 0
+        }
+
+        input,
+        textarea,
+        button {
+            padding: 8px 15px;
+            border-radius: 5px !important;
+            margin: 5px 0px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            font-size: 18px !important;
+            font-weight: 300
+        }
+
+        input:focus,
+        textarea:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: 1px solid #00BCD4;
+            outline-width: 0;
+            font-weight: 400
+        }
+
+        .btn-block {
+            text-transform: uppercase;
+            font-size: 15px !important;
+            font-weight: 400;
+            height: 43px;
+            cursor: pointer
+        }
+
+        .btn-block:hover {
+            color: #fff !important
+        }
+
+        button:focus {
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            outline-width: 0
+        }
+    </style>
+</head>
+
+<!-- <body style="background-color: rgb(254,235,238)"> -->
+
+
+<body>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+            <h3>Login</h3>
+
+            <div class="offset-lg-3 col-lg-6 col-md-12 col-sm-12 text-center">
+                <div class="card">
+
+                    <div class="col-lg-12 col-md-12">
+                        <a class="btn btn-danger" href="/" style="float: right;"> x</a>
+                        <h5 class="text-center mb-4">Jobaaj, Get The Job Done</h5>
+                    </div>
+                    {% for message in messages %}
+                    <ul>
+                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %} style="color:red;">{{ message }}</li>
+                    </ul>
+                    {% endfor %}
+                    <form class="form-card" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="row justify-content-between">
+                            <div class="form-group col-lg-12 col-sm-12 flex-column d-flex">
+                                <input type="text" name="username" placeholder="UserName"><br>
+                            </div>
+                            <div class="form-group col-lg-12 col-sm-12 flex-column d-flex">
+                                <input type="password" name="password" placeholder="Enter your Password"><br>
+                            </div>
+                            
+                            <div class="form-group col-lg-12 col-sm-12 flex-column d-flex">
+                                <input class="btn btn-success" type="submit" value="Login" /><br><br>
+                            </div>
+                            <!-- <div class="form-group col-lg-12 col-sm-12 flex-column d-flex">
+                                <span> Don't have an account?
+                                    <a class="btn btn-success" href="/register">SignUp</a></span>
+                            </div> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+
+
+
+<!-- partial -->
+
+
+
+</html>
