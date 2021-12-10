@@ -43,42 +43,42 @@ def login(request):
 
 # register
 
-# def register(request):
+def register(request):
     
-#     if request.method == 'POST': 
-#         if request.POST['username'] and request.POST['first_name'] and request.POST['email'] and request.POST['pass1'] and request.POST['pass2'] :
-#             username = request.POST['username']
-#             first_name = request.POST['first_name']
-#             last_name = request.POST['last_name']
-#             email = request.POST['email']
-#             pass1 = request.POST['pass1']
-#             pass2 = request.POST['pass2'] 
-#             if pass1 == pass2:
-#                 if User.objects.filter(username=username).exists():
-#                     messages.info(request,'User already exists with that username.')
-#                     return redirect('placement:register')
+    if request.method == 'POST': 
+        if request.POST['username'] and request.POST['first_name'] and request.POST['email'] and request.POST['pass1'] and request.POST['pass2'] :
+            username = request.POST['username']
+            first_name = request.POST['first_name']
+            last_name = request.POST['last_name']
+            email = request.POST['email']
+            pass1 = request.POST['pass1']
+            pass2 = request.POST['pass2'] 
+            if pass1 == pass2:
+                if User.objects.filter(username=username).exists():
+                    messages.info(request,'User already exists with that username.')
+                    return redirect('placement:register')
                 
-#                 elif User.objects.filter(email=email).exists():
-#                     messages.info(request,'Email already registered')
-#                     return redirect('placement:register')
+                elif User.objects.filter(email=email).exists():
+                    messages.info(request,'Email already registered')
+                    return redirect('placement:register')
 
 
-#                 else:
-#                     user = User.objects.create_user(username=username, password=pass1,email=email,first_name=first_name,last_name=last_name)
-#                     user.save()
-#                     # print('user created')
-#                     return redirect('placement:login')
+                else:
+                    user = User.objects.create_user(username=username, password=pass1,email=email,first_name=first_name,last_name=last_name)
+                    user.save()
+                    # print('user created')
+                    return redirect('placement:login')
 
-#             else:
-#                 messages.info(request,'Password does not match')
-#                 return redirect('placement:register')
+            else:
+                messages.info(request,'Password does not match')
+                return redirect('placement:register')
 
-#         else:
-#             messages.info(request,"Invalid crediantials")
-#             return redirect('placement:register')
+        else:
+            messages.info(request,"Invalid crediantials")
+            return redirect('placement:register')
             
-#     else:
-#         return render(request,"register.html") 
+    else:
+        return render(request,"register.html") 
 
 # logout
 
